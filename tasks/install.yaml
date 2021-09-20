@@ -1,0 +1,8 @@
+---
+
+- name: Ensure the htpasswd utility is installed.
+  package:
+    name: "{{ htpasswd_required_packages }}"
+    state: present
+
+...

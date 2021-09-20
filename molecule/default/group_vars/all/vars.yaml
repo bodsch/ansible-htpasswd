@@ -1,0 +1,13 @@
+---
+
+htpasswd_credentials:
+  admin:
+    password: ZRhgqhaAjdbuFXj2PLJTzYy5PrRsStNaeYWd9c3Ze3
+    path: /etc/nginx/.admin-passwdfile
+
+  administrator:
+    password: gp!tk<r+JcDyJhV5!tgzZVUWx233HLVZMJUy<YNVPZ
+    path: /etc/nginx/.admin-passwdfile
+    crypt_scheme: apr_md5_crypt
+
+...
