@@ -1,5 +1,7 @@
 ---
 
+htpasswd_credentials_path: /etc/nginx
+
 htpasswd_credentials: {}
 # htpasswd_credentials:
 #   admin:

@@ -3,26 +3,23 @@
 - name: ensure directory for htpasswd credentials are exists
   file:
     state: directory
-    path: "{{ item.value.path | dirname }}"
-    owner: "{{ item.value.owner | default(omit) }}"
-    group: "{{ item.value.group | default(omit) }}"
+    path: "{{ htpasswd_credentials_path }}"
     mode: 0755
-  loop: "{{ htpasswd_credentials | dict2items }}"
-  loop_control:
-    label: "{{ item.value.path | dirname }}"
 
 - name: ensure htpasswd credentials are configured.
   htpasswd:
-    name: "{{ item.key }}"
-    password: "{{ item.value.password }}"
-    path: "{{ item.value.path }}"
-    owner: "{{ item.value.owner | default(omit) }}"
-    group: "{{ item.value.group | default(omit) }}"
-    mode: "{{ item.value.mode | default('0644') }}"
-    crypt_scheme: "{{ item.value.crypt_scheme | default(omit) }}"
-  loop: "{{ htpasswd_credentials | dict2items }}"
+    name: "{{ item.1.username }}"
+    password: "{{ item.1.password }}"
+    path: "{{ item.0.path }}"
+    owner: "{{ item.1.owner | default(omit) }}"
+    group: "{{ item.1.group | default(omit) }}"
+    mode: "{{ item.1.mode | default('0644') }}"
+    crypt_scheme: "{{ item.1.crypt_scheme | default(omit) }}"
+  with_subelements:
+    - "{{ htpasswd_credentials }}"
+    - users
   loop_control:
-    label: "{{ item.value.path }} - {{ item.key }}"
+    label: "{{ item.0.path }} : {{ item.1.username }}"
   no_log: true
   register: added_users
 
