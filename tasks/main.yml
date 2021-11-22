@@ -1,8 +1,8 @@
 ---
 
-#- include_tasks: prepare.yaml
+- include_tasks: prepare.yaml
 
-#- include_tasks: install.yaml
+- include_tasks: install.yaml
 
 - include_tasks: configure.yaml
 
