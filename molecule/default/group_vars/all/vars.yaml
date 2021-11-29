@@ -1,5 +1,7 @@
 ---
 
+#ansible_python_interpreter: python3
+
 htpasswd_credentials:
 
   - path: "{{ htpasswd_credentials_path }}/.admin-passwdfile"
