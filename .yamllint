@@ -7,5 +7,9 @@ rules:
     level: warning
 
 ignore: |
-  .github
+  tests/
+  molecule/
+  .molecule/
+  .travis.yml
   .tox
+  .github
