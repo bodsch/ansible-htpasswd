@@ -20,11 +20,15 @@ An Ansible Role to handle credentials over `htpasswd` for webservers like nginx.
 
 Tested on
 
-* Debian 9 / 10
-* Ubuntu 18.04 / 18.10 / 19.10
-* CentOS 7 / 8
-* Oracle Linux 8
-* Arch Linux
+* ArchLinux
+* Debian based
+    - Debian 10 / 11
+    - Ubuntu 20.04
+* RedHat based
+    - CentOS 8 (**not longer supported**)
+    - Alma Linux 8
+    - Rocky Linux 8
+    - OracleLinux 8
 
 ## configuration
 
@@ -51,6 +55,8 @@ htpasswd_credentials:
     path: /etc/nginx/.admin-passwdfile
     crypt_scheme: apr_md5_crypt
 ```
+
+---
 
 ## Author and License
 
