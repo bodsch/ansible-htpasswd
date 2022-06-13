@@ -25,7 +25,6 @@ Tested on
     - Debian 10 / 11
     - Ubuntu 20.04
 * RedHat based
-    - CentOS 8 (**not longer supported**)
     - Alma Linux 8
     - Rocky Linux 8
     - OracleLinux 8
