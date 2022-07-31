@@ -2,11 +2,7 @@
 
 htpasswd_credentials_path: /etc/nginx
 
-htpasswd_credentials: {}
-# htpasswd_credentials:
-#   admin:
-#     password: ZRhgqhaAjdbuFXj2PLJTzYy5PrRsStNaeYWd9c3Ze3
-#     path: /etc/nginx/.admin-passwdfile
+htpasswd_credentials: []
 
 htpasswd_list_users: true
 

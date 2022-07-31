@@ -14,7 +14,7 @@ An Ansible Role to handle credentials over `htpasswd` for webservers like nginx.
 
 ## Requirements & Dependencies
 
-- None
+- `passlib>=1.6`
 
 ### Operating systems
 
@@ -34,7 +34,9 @@ Tested on
 ### default
 
 ```yaml
-htpasswd_credentials: {}
+htpasswd_credentials_path: /etc/nginx
+
+htpasswd_credentials: []
 
 htpasswd_list_users: true
 ```
@@ -45,14 +47,24 @@ see also [molecule tests](molecule/default/group_vars/all/vars.yaml)
 
 ```yaml
 htpasswd_credentials:
-  admin:
-    password: ZRhgqhaAjdbuFXj2PLJTzYy5PrRsStNaeYWd9c3Ze3
-    path: /etc/nginx/.admin-passwdfile
+  - path: "{{ htpasswd_credentials_path }}/.admin-passwdfile"
+    mode: "u=rw,g=r,o-r"
+    owner: "www-data"
+    users:
+    - username: admin
+      password: ZRhgqhaAjdbuFXj2PLJTzYy5PrRsStNaeYWd9c3Ze3
+    - username: administrator
+      password: gp!tk<r+JcDyJhV5!tgzZVUWx233HLVZMJUy<YNVPZ
+      state: absent
+      # https://docs.ansible.com/ansible/latest/collections/community/general/htpasswd_module.html#parameter-crypt_scheme
+      # available choices might be: apr_md5_crypt, des_crypt, ldap_sha1, plaintext
+      crypt_scheme: plaintext
 
-  administrator:
-    password: gp!tk<r+JcDyJhV5!tgzZVUWx233HLVZMJUy<YNVPZ
-    path: /etc/nginx/.admin-passwdfile
-    crypt_scheme: apr_md5_crypt
+  - path: "{{ htpasswd_credentials_path }}/.monitoring-passwdfile"
+    users:
+    - username: monitoring
+      password: gp!tk<r+JcDyJhV5!tgzZVUWx233HLVZMJUy<YNVPZ
+      crypt_scheme: des_crypt
 ```
 
 ---

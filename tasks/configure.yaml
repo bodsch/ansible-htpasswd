@@ -7,13 +7,14 @@
     mode: 0755
 
 - name: ensure htpasswd credentials are configured.
-  htpasswd:
+  community.general.htpasswd:
     name: "{{ item.1.username }}"
     password: "{{ item.1.password }}"
+    state: "{{ item.1.state | default('present') }}"
     path: "{{ item.0.path }}"
-    owner: "{{ item.1.owner | default(omit) }}"
-    group: "{{ item.1.group | default(omit) }}"
-    mode: "{{ item.1.mode | default('0644') }}"
+    owner: "{{ item.0.owner | default(omit) }}"
+    group: "{{ item.0.group | default(omit) }}"
+    mode: "{{ item.0.mode | default('u=rw,g=r,o-r') }}"
     crypt_scheme: "{{ item.1.crypt_scheme | default(omit) }}"
   with_subelements:
     - "{{ htpasswd_credentials }}"
