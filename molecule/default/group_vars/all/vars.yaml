@@ -5,7 +5,6 @@ htpasswd_credentials_path: /etc/nginx/htpasswd.d
 htpasswd_credentials:
   - path: "{{ htpasswd_credentials_path }}/.admin-passwdfile"
     mode: "u=rw,g=r,o-r"
-    owner: "www-data"
     users:
     - username: admin
       password: ZRhgqhaAjdbuFXj2PLJTzYy5PrRsStNaeYWd9c3Ze3
