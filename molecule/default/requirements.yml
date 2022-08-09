@@ -1,7 +1,6 @@
 ---
 
 - name: nginx
-  src: https://github.com/bodsch/ansible-role-nginx.git
-  version: fix/archlinux-dont-need-pidfile
+  src: https://github.com/bodsch/ansible-nginx.git
 
 ...

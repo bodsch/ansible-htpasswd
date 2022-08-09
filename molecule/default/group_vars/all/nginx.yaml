@@ -3,16 +3,26 @@
 # nginx_remove_default_vhost: true
 
 nginx_vhosts:
-  - listen: "80"
-    server_name: "htpassword.test"
-    root: "/var/www/html"
-    index: index.html
-    filename: "htpassword.test.conf"
+  default:
+    # Set to True if you want to redirect http to https
+    ssl:
+      enabled: false
 
-    extra_parameters: |
-      location / {
-        auth_basic           "Administrator’s Area";
-        auth_basic_user_file /etc/nginx/.admin-passwdfile;
-      }
+  htpassword.test:
+    state: present  # default: present
+    enabled: true   # default: true
+
+    filename: 00-htpassword
+    # domain(s)
+    domains:
+      - localhost
+    # listen
+    listen: 80
+    # locations
+    locations:
+      "/":
+        options: |
+          auth_basic           "Administrator’s Area";
+          auth_basic_user_file "{{ htpasswd_credentials_path }}/.monitoring-passwdfile";
 
 ...
