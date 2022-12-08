@@ -1,7 +1,7 @@
 ---
 
 - name: nginx
-  src: https://github.com/bodsch/ansible-nginx.git
-  version: 0.10.0
+  src: bodsch.nginx
+  version: 0.11.0
 
 ...

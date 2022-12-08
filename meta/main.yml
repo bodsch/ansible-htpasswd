@@ -7,7 +7,7 @@ galaxy_info:
   author: Bodo Schulz
   description: ansible role for handling htpasswd credentials
   license: "Apache"
-  min_ansible_version: 2.9
+  min_ansible_version: "2.10"
 
   platforms:
     - name: ArchLinux
@@ -22,7 +22,7 @@ galaxy_info:
         - bullseye
     - name: EL
       versions:
-        - 8
+        - "8"
 
   galaxy_tags:
     - system

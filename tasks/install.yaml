@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure the htpasswd utility is installed.
-  package:
+  ansible.builtin.package:
     name: "{{ htpasswd_required_packages }}"
     state: present
 
