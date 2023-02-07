@@ -42,8 +42,21 @@
         gpgcheck: 1
         enabled: 1
 
-- name: update package cache
-  ansible.builtin.package:
-    update_cache: true
+- name: validate htpasswd data
+  ansible.builtin.set_fact:
+    validated_credentials: "{{ htpasswd_credentials | validate }}"
+  no_log: true
+
+- name: inform about non-valid data
+  ansible.builtin.debug:
+    msg: "{{ validated_credentials.non_valid_msg }}"
+  when:
+    - validated_credentials.non_valid_msg is defined
+    - validated_credentials.non_valid_msg | count > 0
+
+- name: re-define htpasswd_credentials
+  ansible.builtin.set_fact:
+    htpasswd_credentials: "{{ validated_credentials.valid_entries }}"
+  no_log: true
 
 ...

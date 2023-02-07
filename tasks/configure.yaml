@@ -26,7 +26,7 @@
 
 - name: Reporting changes
   ansible.builtin.debug:
-    msg: "{{ added_users.results | selectattr('changed', 'equalto', True) | map(attribute='msg') | list }}"
+    msg: "{{ added_users.results | report }}"
   when:
     - htpasswd_list_users
 

@@ -20,9 +20,6 @@ galaxy_info:
         # 10
         - buster
         - bullseye
-    - name: EL
-      versions:
-        - "8"
 
   galaxy_tags:
     - system

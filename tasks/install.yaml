@@ -1,8 +1,17 @@
 ---
 
-- name: Ensure the htpasswd utility is installed.
-  ansible.builtin.package:
-    name: "{{ htpasswd_required_packages }}"
-    state: present
+- name: install required packages
+  when:
+    - htpasswd_required_packages is defined
+    - htpasswd_required_packages | count > 0
+  block:
+    # - name: update package cache
+    #   ansible.builtin.package:
+    #     update_cache: true
+
+    - name: Ensure the htpasswd utility is installed.
+      ansible.builtin.package:
+        name: "{{ htpasswd_required_packages }}"
+        state: present
 
 ...
