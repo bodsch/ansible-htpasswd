@@ -1,0 +1,22 @@
+---
+
+htpasswd_credentials_path: /etc/nginx/htpasswd.d
+
+htpasswd_credentials:
+  - path: "{{ htpasswd_credentials_path }}/.admin-passwdfile"
+    mode: "u=rw,g=r,o-r"
+    users:
+      - username: admin
+        password: ZRhgqhaAjdbuFXj2PLJTzYy5PrRsStNaeYWd9c3Ze3
+      - username: administrator
+        password: gp!tk<r+JcDyJhV5!tgzZVUWx233HLVZMJUy<YNVPZ
+        state: absent
+        crypt_scheme: plaintext
+
+  - path: "{{ htpasswd_credentials_path }}/.monitoring-passwdfile"
+    users:
+      - username: monitoring
+        password: gp!tk<r+JcDyJhV5!tgzZVUWx233HLVZMJUy<YNVPZ
+        crypt_scheme: des_crypt
+
+...

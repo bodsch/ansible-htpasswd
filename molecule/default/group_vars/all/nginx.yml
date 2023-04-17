@@ -1,0 +1,28 @@
+---
+
+# nginx_remove_default_vhost: true
+
+nginx_vhosts:
+  default:
+    # Set to True if you want to redirect http to https
+    ssl:
+      enabled: false
+
+  htpassword.test:
+    state: present  # default: present
+    enabled: true   # default: true
+
+    filename: 00-htpassword
+    # domain(s)
+    domains:
+      - localhost
+    # listen
+    listen: 80
+    # locations
+    locations:
+      "/":
+        options: |
+          auth_basic           "Administrator’s Area";
+          auth_basic_user_file "{{ htpasswd_credentials_path }}/.monitoring-passwdfile";
+
+...
