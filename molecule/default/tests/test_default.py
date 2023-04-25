@@ -119,4 +119,3 @@ def test_files(host, files):
 def test_no_files(host, files):
     d = host.file(files)
     assert not d.is_file
-
