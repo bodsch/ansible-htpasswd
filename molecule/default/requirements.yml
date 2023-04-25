@@ -1,7 +1,8 @@
 ---
 
-- name: nginx
-  src: bodsch.nginx
-  #version: 0.20.0
+roles:
+  - name: nginx
+    src: bodsch.nginx
+    version: 0.20.0
 
 ...

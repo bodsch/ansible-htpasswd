@@ -3,12 +3,13 @@
 # nginx_remove_default_vhost: true
 
 nginx_vhosts:
-  default:
-    # Set to True if you want to redirect http to https
+  - name: default
+    description: |
+      simply a default vhost
     ssl:
       enabled: false
 
-  htpassword.test:
+  - name: htpassword.test
     state: present  # default: present
     enabled: true   # default: true
 
