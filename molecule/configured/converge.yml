@@ -5,10 +5,8 @@
   any_errors_fatal: false
   become: false
 
-
   environment:
     NETRC: ''
 
   roles:
     - role: ansible-htpasswd
-    # - role: nginx
