@@ -1,6 +1,7 @@
 # python 3 headers, required if submitting to Ansible
 
-from __future__ import (absolute_import, print_function)
+from __future__ import absolute_import, print_function
+
 __metaclass__ = type
 
 from ansible.utils.display import Display
@@ -10,18 +11,17 @@ display = Display()
 
 class FilterModule(object):
     """
-        Ansible file jinja2 tests
+    Ansible file jinja2 tests
     """
 
     def filters(self):
         return {
-            'validate': self.validate,
-            'report': self.report,
+            "validate": self.validate,
+            "report": self.report,
         }
 
     def validate(self, data):
-        """
-        """
+        """ """
         valid = []
         non_valid = []
 
@@ -41,17 +41,13 @@ class FilterModule(object):
                             msg = f"username and/or password for the path are missing ({htpwd_path})."
                             non_valid.append(msg)
 
-        result = dict(
-            valid_entries = valid,
-            non_valid_msg = non_valid
-        )
+        result = dict(valid_entries=valid, non_valid_msg=non_valid)
         # display.v(f"= result: {result} {type(result)}")
 
         return result
 
     def report(self, data):
-        """
-        """
+        """ """
         result = []
 
         if isinstance(data, list):

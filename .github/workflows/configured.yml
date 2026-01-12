@@ -2,8 +2,6 @@
 name: htpasswd with various configuration
 
 on:
-  #schedule:
-  #  - cron: "45 3 * * 0"
   workflow_dispatch:
     inputs:
       logLevel:
@@ -50,13 +48,13 @@ jobs:
 
     steps:
       - name: check out the codebase.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
         with:
           path: 'ansible-htpasswd'
           ref: ${{ github.event.workflow_run.head_branch }}
 
       - name: 🐍 set up python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6.1.0
         with:
           python-version: "${{ matrix.python_version }}"
 
@@ -97,13 +95,13 @@ jobs:
 
     steps:
       - name: check out the codebase.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
         with:
           path: 'ansible-htpasswd'
           ref: ${{ github.event.workflow_run.head_branch }}
 
       - name: 🐍 set up python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6.1.0
         with:
           python-version: "${{ matrix.python_version }}"
 
@@ -124,7 +122,6 @@ jobs:
             -e TOX_SCENARIO="${{ matrix.scenario }}" \
             -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
             -e DISTRIBUTION="${{ matrix.image }}"
-
   scenarios:
     name: "${{ matrix.scenario }} / ${{ matrix.image }}, ansible ${{ matrix.ansible-version }}, python ${{ matrix.python_version }}"
     runs-on: ubuntu-22.04
@@ -144,13 +141,13 @@ jobs:
 
     steps:
       - name: check out the codebase.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
         with:
           path: 'ansible-htpasswd'
           ref: ${{ github.event.workflow_run.head_branch }}
 
       - name: 🐍 set up python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6.1.0
         with:
           python-version: "${{ matrix.python_version }}"
 
