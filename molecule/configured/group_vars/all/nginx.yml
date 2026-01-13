@@ -1,23 +1,64 @@
 ---
 
-# nginx_remove_default_vhost: true
+nginx_gzip:
+  enabled: true
+
+nginx_events:
+  multi_accept: true
+
+nginx_http:
+  extra_options: |
+    proxy_buffering        off;
+    proxy_set_header       X-Real-IP $remote_addr;
+    proxy_set_header       X-Scheme $scheme;
+    proxy_set_header       X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header       Host $http_host;
+
+    types_hash_max_size    1024;
+    types_hash_bucket_size 512;
+
+    map_hash_max_size      128;
+    map_hash_bucket_size   128;
+
+nginx_logformat:
+  json_combined:
+    format: |
+      '{'
+        '"time_local": "$time_local",'
+        '"remote_addr": "$remote_addr",'
+        '"remote_user": "$remote_user",'
+        '"request": "$request",'
+        '"status": "$status",'
+        '"body_bytes_sent": "$body_bytes_sent",'
+        '"request_time": "$request_time",'
+        '"http_referrer": "$http_referer",'
+        '"http_user_agent": "$http_user_agent"'
+      '}';
+    # escape: json
+
 
 nginx_vhosts:
-  default:
-    # Set to True if you want to redirect http to https
+
+  - name: default
+    filename: 90-default.conf
+    description: |
+      simply a default vhost
     ssl:
       enabled: false
 
-  htpassword.test:
+  - name: htpassword.test
+    filename: 00-htpassword.conf
     state: present  # default: present
     enabled: true   # default: true
 
-    filename: 00-htpassword
     # domain(s)
     domains:
       - localhost
+
     # listen
-    listen: 80
+    listen:
+      - 80
+
     # locations
     locations:
       "/":

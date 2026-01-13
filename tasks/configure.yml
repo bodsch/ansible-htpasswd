@@ -4,10 +4,11 @@
   ansible.builtin.file:
     state: directory
     path: "{{ htpasswd_credentials_path }}"
-    mode: 0755
+    mode: "0755"
 
 - name: ensure htpasswd credentials are configured.
-  community.general.htpasswd:
+  # community.general.htpasswd
+  htpasswd:
     name: "{{ item.1.username }}"
     password: "{{ item.1.password }}"
     state: "{{ item.1.state | default('present') }}"
