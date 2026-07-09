@@ -3,6 +3,13 @@
 
 An Ansible Role to handle credentials over `htpasswd` for webservers like nginx.
 
+---
+
+> I have moved this role to a [collection](https://github.com/bodsch/ansible-collection-auth).
+> Therefore, please do not process any further issues or merge requests **here**.  
+
+---
+
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bodsch/ansible-htpasswd/main.yml?branch=main)][ci]
 [![GitHub issues](https://img.shields.io/github/issues/bodsch/ansible-htpasswd)][issues]
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/bodsch/ansible-htpasswd)][releases]
